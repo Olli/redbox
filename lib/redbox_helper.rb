@@ -49,7 +49,7 @@ private
     if url_options.nil?
       raise ArgumentError, 'You are trying to create a RedBox link without specifying a valid url.'
     elsif url_options.is_a? String
-      result + url_options.delete(":/")
+      result + url_options.delete(":/?=&")
     else
       result + url_to_id_string(url_options.values.join('_'))
     end
