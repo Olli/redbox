@@ -87,3 +87,22 @@ If you find this plugin useful, you can give something back to the community by 
 what bits of functionality are generic enough to be useful as a rails plugin. Releasing rails plugins is dead
 simple, and helps us all do better work.
 
+
+Hiding <object> Elements
+=========
+
+The only way to hide <object> elements behind a Redbox is the actually turn off the display value of that element (similiar to select boxes)
+IE will not allow for  document.getElementsByTagName("object")
+
+My fix is to surround all <object> elements that need to be hidden behind a redbox in an elements that has a class of "video":
+
+<div class="video">
+  <object>....</object>
+</div>
+
+When the redbox is called all elements with a class of video will have their visibility set to hidden, 
+on close they will be visible again.
+
+See the hideObjects and showObjects functions in the redbox.js
+
+~ Tom Cocca
