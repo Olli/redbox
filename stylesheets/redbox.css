@@ -17,6 +17,10 @@
   width: 100%;
   position: absolute;
   top: 0px;
+  /* IE Centering and Z-Index */
+	z-index: 100;
+	left: 0px; /new/
+	right: 0px; /new/
 }
 
 #RB_window {
@@ -25,6 +29,12 @@
 	width: 100%;
 	z-index: 102;
 	line-height: 0;
+}
+
+/* fixes bug in IE 6+7 where fixed positoning doesn't work */
+#RB_window 
+{
+	* position: absolute;
 }
 
 #RB_loading {
