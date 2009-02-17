@@ -34,12 +34,17 @@ var RedBox = {
     new Effect.Fade('RB_window', {duration: 0.4});
     new Effect.Fade('RB_overlay', {duration: 0.4});
     this.showSelectBoxes();
+    this.showObjects();
   },
 
   showOverlay: function()
   {
-    var inside_redbox = '<div id="RB_window" style="display: none;" onclick="if(event.target.id == \'RB_window\') {RedBox.close()};"><div id="RB_loading"></div></div><div id="RB_overlay" style="display: none;" onclick="if(event.target.id == \'RB_overlay\') {RedBox.close()};"></div>'
-    if ($('RB_redbox'))
+		// Do not close when clicking outsite the window
+		var inside_redbox = '<div id="RB_window" style="display: none;"><div id="RB_loading"></div></div><div id="RB_overlay" style="display: none;"></div>'
+		// Close the redbox when clicking outside the window
+		//var inside_redbox = '<div id="RB_window" style="display: none;" onclick="if(event.target.id == \'RB_window\') {RedBox.close()};"><div id="RB_loading"></div></div><div id="RB_overlay" style="display: none;" onclick="if(event.target.id == \'RB_overlay\') {RedBox.close()};"></div>'
+    
+		if ($('RB_redbox'))
     {
       Element.update('RB_redbox', "");
       new Insertion.Top($('RB_redbox'), inside_redbox);  
@@ -51,7 +56,8 @@ var RedBox = {
 
     this.setOverlaySize();
     this.hideSelectBoxes();
-    new Effect.Appear('RB_overlay', {duration: 0.4, to: 0.6, queue: 'end'});
+    this.hideObjects();
+		new Effect.Appear('RB_overlay', {duration: 0.4, to: 0.6, queue: 'end'});
   },
 
   setOverlaySize: function()
@@ -66,7 +72,7 @@ var RedBox = {
     }
     else
     { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari
-      yScroll = document.body.offsetHeight;
+      yScroll = document.body.offsetHeuiight;
     }
     $("RB_overlay").style['height'] = yScroll +"px";
   },
@@ -196,7 +202,10 @@ var RedBox = {
     var content = $(id).cloneNode(true);
     content.style['display'] = 'block';
     $('RB_window').appendChild(content);  
-
+    
+    // Show select boxes inside the redbox content div
+    $$('#RB_window select').each(function(elem){elem.style.visibility = "visible";});
+		
     this.setWindowPositions();
   },
   
@@ -214,8 +223,22 @@ var RedBox = {
   	for (i = 0; i != selects.length; i++) {
   		selects[i].style.visibility = "visible";
   	}
+  },
+
+  hideObjects: function()
+  {
+  	objects = $$('.video');
+  	for (i = 0; i != objects.length; i++) {
+  		objects[i].style.visibility = "hidden";
+  	}
+  },
+
+  showObjects: function()
+  {
+  	objects = $$('.video');
+  	for (i = 0; i != objects.length; i++) {
+  		objects[i].style.visibility = "visible";
+  	}
   }
-
-
 
 }
