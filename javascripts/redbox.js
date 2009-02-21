@@ -36,6 +36,15 @@ var RedBox = {
     this.showSelectBoxes();
     this.showObjects();
   },
+  
+  close_with_clone: function(id)
+  {
+    this.close();
+    var content = $$('#RB_window #' + id)[0].innerHTML;
+    $('RB_window').removeChild($(id));
+    $(id).innerHTML = content;
+    $(id).hide();
+  },
 
   showOverlay: function()
   {
