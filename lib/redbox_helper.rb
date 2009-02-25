@@ -5,6 +5,16 @@ module RedboxHelper
     link_to_function name, "RedBox.showInline('#{id.to_s}')", html_options
   end
   
+  def link_to_redbox_select(name, id, html_options = {})
+    @uses_redbox = true
+    link_to_function name, "RedBox.showInlineSelect('#{id.to_s}' )", html_options
+  end    
+ 
+  def link_to_redbox_record_select(name, id, select_name, controller_name, html_options = {})
+    @uses_redbox = true
+    link_to_function name, "RedBox.showInlineSelect('#{id.to_s}', '#{select_name}', '#{controller_name}' )", html_options
+  end     
+  
   def link_to_component_redbox(name, url_options = {}, html_options = {})
     @uses_redbox = true
     id = id_from_url(url_options, html_options[:id])
