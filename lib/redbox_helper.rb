@@ -70,7 +70,7 @@ private
   end
 
   def build_hidden_content(hidden_content_id)
-    content_tag("div", '', :id => hidden_content_id, :style => 'display: none;')
+    content_tag("span", '', :id => hidden_content_id, :style => 'display: none;')
   end
   
   def redbox_remote_options(remote_options, hidden_content_id)
