@@ -38,7 +38,17 @@ module RedboxHelper
   def button_to_close_redbox(name, html_options = {})
     @uses_redbox = true
     button_to_function name, 'RedBox.close()', html_options
-  end  
+  end
+  
+  def link_to_close_redbox_with_clone(name, id, html_options = {})
+    @uses_redbox = true
+    link_to_function name, "RedBox.close_with_clone('#{id}')", html_options
+  end
+  
+  def button_to_close_redbox_with_clone(name, id, html_options = {})
+    @uses_redbox = true
+    button_to_function name, "RedBox.close_with_clone('#{id}')", html_options
+  end
   
   def launch_remote_redbox(link_to_remote_options = {}, html_options = {})
     @uses_redbox = true
