@@ -43,7 +43,7 @@ var RedBox = {
 
   showOverlay: function()
   {
-    var inside_redbox = '<div id="RB_window" style="display: none;"><div id="RB_loading"></div></div><div id="RB_overlay" style="display: none;"></div>'
+    var inside_redbox = '<div id="RB_window" style="display: none;" onclick="if(event.target.id == \'RB_window\') {RedBox.close()};"><div id="RB_loading"></div></div><div id="RB_overlay" style="display: none;" onclick="if(event.target.id == \'RB_overlay\') {RedBox.close()};"></div>'
     if ($('RB_redbox'))
     {
       Element.update('RB_redbox', "");
@@ -88,8 +88,7 @@ var RedBox = {
 		
 		var boxTop = arrayPageScroll[1] + (arrayPageSize[3] / 10);
 		var boxLeft = arrayPageScroll[0];
-		Element.setTop(window_id, boxTop);
-		Element.setLeft(window_id, boxLeft);
+    $(window_id).setStyle({top: boxTop, left: boxLeft});
   },
   
   //
